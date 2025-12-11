@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional, IsUrl, IsDateString, IsUUID, Length, maxLength, Max, Min, IsDate } from "class-validator";
+import { IsString, IsNumber, IsUrl, IsUUID, Max, Min } from "class-validator";
 import type { UUID } from "crypto";
 
 export class StreamingContentDto {
@@ -17,7 +17,6 @@ export class StreamingContentDto {
   @IsUrl({}, {message: "Invalid video url"})
   video_url: string;
 
-  @IsOptional()
   @IsNumber()
   @Min(1920, { message: 'Year must be greater than 1920' })
   @Max(2025, { message: 'Year must be smaller or equal to 2025' })
@@ -26,20 +25,17 @@ export class StreamingContentDto {
   @IsString()
   genre: string;
 
-  @IsOptional()
-  @IsNumber({}, { message: 'Rating must be a number' })
+  @IsNumber({ maxDecimalPlaces: 1 }, { message: 'Price can have at most 1 decimals' })
   @Min(1, { message: 'Rating must be at least 1' })
-  @Max(5, { message: 'Rating cannot be more than 5' })
+  @Max(10, { message: 'Rating cannot be more than 10' })
   rating: number;
 
   @IsNumber({}, {message: "Duration must be number"})
   duration: number;
 
-  @IsOptional()
   @IsString()
   cast: string;
 
-  @IsOptional()
   @IsNumber()
   watch_progress?: number;
 }
