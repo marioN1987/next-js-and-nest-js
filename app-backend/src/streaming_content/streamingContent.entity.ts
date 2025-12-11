@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('streaming_content')
@@ -17,22 +18,23 @@ export class StreamingContentEntity {
     @Column()
     video_url: string;
 
-    @Column({nullable: true})
+    @Column('int')
     year: number;
 
     @Column()
     genre: string;
-
-    @Column({ nullable: true })
+    
+    @Type(() => Number)
+    @Column('double')
     rating: number;
 
-    @Column()
+    @Column('int')
     duration: number;
 
-    @Column({ nullable: true })
+    @Column()
     cast: string;
 
-    @Column({type: 'int', nullable: true })
+    @Column('int')
     watch_progress?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
