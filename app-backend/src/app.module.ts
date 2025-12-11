@@ -5,6 +5,7 @@ import { StreamingModule } from './streaming_content/streamingContent.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
-    StreamingModule
+    StreamingModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
