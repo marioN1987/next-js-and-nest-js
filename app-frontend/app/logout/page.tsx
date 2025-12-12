@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { AppContext } from "@/components/context/app-content-provider";
+import { AppContext } from "@/components/context/app-context-provider";
 import { useRouter } from "next/navigation";
 
 export default function Logout() {
@@ -12,13 +12,14 @@ export default function Logout() {
     // Clear state
     setGuestEmail(null);
     setIsAdmin(false);
+
+    //clear localstorage
     localStorage.getItem("isAdmin") && localStorage.removeItem("isAdmin");
     localStorage.getItem("guestEmail") && localStorage.removeItem("guestEmail");
 
-    // Redirect after state is updated
+    // Redirect to homepage after logout
     router.push("/");
   }, [setGuestEmail, setIsAdmin, router]);
 
-  // Can return null or a loading indicator
   return null;
 }
