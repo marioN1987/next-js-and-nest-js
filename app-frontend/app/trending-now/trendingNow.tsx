@@ -1,10 +1,11 @@
-import { Suspense } from "react";
-import RenderStream from "./renderStream";
+import { Suspense, use } from "react";
+import loadingGif from "@/public/loading.gif";
+import StreamContentPromise from "./streamContentPromise";
 
 export default function TrendingNow() {
   return (
     <section id="trending">
-      <h2 className="text-4xl font-bold mt-10 ml-2 mb-5 border-b-2 border-black-500 w-fit">
+      <h2 className="text-4xl font-bold mt-10 ml-5 mb-5 border-b-2 border-black-500 w-fit">
         Trending Now
       </h2>
 
@@ -14,8 +15,10 @@ export default function TrendingNow() {
               For <Suspense fallback="…"> to activate, it must receive an 
               unresolved Promise from inside the component tree.
            */}
-          <Suspense fallback={<p>Loading...</p>}>
-            <RenderStream />
+          <Suspense
+            fallback={<img className="w-fit mx-auto" src={loadingGif.src} />}
+          >
+            <StreamContentPromise />
           </Suspense>
         </div>
       </div>

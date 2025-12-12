@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { AppContext } from "./context/app-context-provider";
+import { AuthContext } from "@/context/AuthContext";
 import { useContext } from "react";
 import styles from "./Header.module.css";
 
 export default function Header() {
-  const { isAdmin, guestEmail } = useContext(AppContext);
+  const { isAdmin, guestEmail } = useContext(AuthContext);
 
   const greetingText = () => {
     let greeting = null;

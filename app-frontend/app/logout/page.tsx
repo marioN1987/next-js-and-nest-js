@@ -1,11 +1,11 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { AppContext } from "@/components/context/app-context-provider";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function Logout() {
-  const { setIsAdmin, setGuestEmail } = useContext(AppContext);
+  const { setIsAdmin, setGuestEmail } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
