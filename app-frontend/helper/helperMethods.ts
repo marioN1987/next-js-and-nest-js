@@ -13,3 +13,7 @@ export function isValidUrl(url: string): boolean {
     return false;
   }
 }
+
+export function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
