@@ -13,9 +13,3 @@ export function isValidUrl(url: string): boolean {
     return false;
   }
 }
-
-export async function loadStreamingContent() {
-  const resp = await fetch("http://localhost:8080/api/streaming");
-  const streamData = await resp.json();
-  return streamData;
-}
