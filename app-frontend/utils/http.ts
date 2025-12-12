@@ -12,21 +12,28 @@ export async function fetchStreamingContent() {
 }
 
 export async function validateUser(formData: any) {
-        const response = await fetch("http://localhost:8080/api/users/validate", {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
+  try {
+    const response = await fetch("http://localhost:8080/api/users/validate", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json().catch(() => ({})); // fallback if JSON is invalid
 
     if (!response.ok) {
-        throw new Error("Failed to fetch streaming content");
+      // Use message from server or fallback to status text
+      const msg = data?.message || response.statusText || "Unknown error";
+      throw new Error("Failed to fetch streaming content: " + msg);
     }
 
-    const { userAccess } = await response.json();
-
-    return userAccess;
+    return data.userAccess;
+  } catch (err: any) {
+    // Catch network errors, etc.
+    throw new Error(err?.message || "Unknown error during fetch");
+  }
 }
 
 export async function loadStreamingContent() {
