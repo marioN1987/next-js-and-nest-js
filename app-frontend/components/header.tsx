@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { AppContext } from "./context/app-content-provider";
+import { AppContext } from "./context/app-context-provider";
 import { useContext } from "react";
-import { usePathname } from "next/navigation";
+import styles from "./Header.module.css";
 
 export default function Header() {
   const { isAdmin, guestEmail } = useContext(AppContext);
@@ -27,23 +27,9 @@ export default function Header() {
     );
   };
 
-  const pathname = usePathname();
-  const homePage = pathname === "/";
-
   const navLinks = () => (
     <div className="navLinks z-12 ml-4">
       <div className="text-white flex flex-col items-start gap-x-4 gap-y-4 md:flex-row md:items-center">
-        {!homePage && (
-          <div className="item">
-            <Link
-              className="rounded-md px-3 py-2 text-sm font-medium bg-gray-400 text-gray-100 hover:bg-white/5 hover:text-white"
-              href={{ pathname: "/" }}
-            >
-              Home
-            </Link>
-          </div>
-        )}
-
         {isAdmin && (
           <>
             <div className="item">
@@ -81,7 +67,11 @@ export default function Header() {
       {/* make image darker with overlay */}
       <div className="absolute inset-0 bg-black/50" />
 
-      <div className="flex flex-row md:justify-center flex-wrap">
+      <Link href="/" className={styles.logo}>
+        ZenithFlix
+      </Link>
+
+      <div className="flex flex-row md:justify-center flex-wrap mt-4 md:mt-0">
         <div className="right-section absolute text-right right-4 md:right-10 z-11">
           <div className="login-link">
             <Link
