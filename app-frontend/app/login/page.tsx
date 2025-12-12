@@ -1,5 +1,5 @@
 "use client";
-import { AppContext } from "@/components/context/app-content-provider";
+import { AppContext } from "@/components/context/app-context-provider";
 import { validateUser } from "@/utils/http";
 import { useRouter } from "next/navigation";
 import { useActionState, useContext } from "react";
