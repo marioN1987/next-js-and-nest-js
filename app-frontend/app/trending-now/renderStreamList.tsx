@@ -2,7 +2,7 @@ import { use } from "react";
 import { fetchStreamingContent } from "@/utils/http";
 import { IStreamingContent } from "@/types/IStreamingContent.interface";
 
-export default function RenderStream() {
+export default function RenderStreamList() {
   //use() is a new React 18+ hook that allows Server Components to wait for (suspend on) a Promise directly during rendering.
   //For <Suspense fallback="…"> to activate, it must receive an unresolved Promise from inside the component tree.
   const streamingContent: IStreamingContent[] = use(fetchStreamingContent());
