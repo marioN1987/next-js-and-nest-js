@@ -17,10 +17,16 @@ const defaultContext: IAppContext = {
 
 export const AppContext = createContext<IAppContext>(defaultContext);
 
-export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+export const AppContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [guestEmail, setGuestEmail] = useState<string | null>(null);
 
+  //store in localstorage if admin or guest is logged in
+  // because on page reload it was reseting
   useEffect(() => {
     if (localStorage.getItem("isAdmin")) {
       setIsAdmin(true);
