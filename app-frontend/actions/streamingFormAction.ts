@@ -3,6 +3,7 @@ import { isValidUrl } from "@/helper/helperMethods";
 import { IStreamingContent } from "@/types/IStreamingContent.interface";
 import { IStreamingFormErrors } from "@/types/IStreamingFormErrors.interface";
 import { IFormStateProps } from "@/types/IFormStateProps.interface";
+import { createStreamContent, updateStreamContent } from "@/utils/http";
 
 /* -------------------------------------------------
    VALIDATION
@@ -109,29 +110,7 @@ export async function editStreamFormAction(
     }
 
     try {
-        const res = await fetch(`http://localhost:8080/api/streaming/${formDataObject.id}`, {
-            method: "PUT",
-            body: JSON.stringify(formDataObject),
-            headers: { "Content-Type": "application/json" },
-        });
-
-        if (!res.ok) {
-            return {
-                success: false,
-                errors: null,
-                errMessage: "Failed to update",
-                enteredValues: formDataObject,
-            };
-        }
-
-        const json = await res.json();
-
-        return {
-            success: true,
-            errors: null,
-            errMessage: null,
-            enteredValues: json.content as IStreamingContent,
-        };
+        return await updateStreamContent(formDataObject);
     } catch (err) {
         return {
             success: false,
@@ -161,28 +140,7 @@ export async function createStreamFormAction(
     }
 
     try {
-        const res = await fetch(`http://localhost:8080/api/streaming/create`, {
-            method: "POST",
-            body: JSON.stringify(formDataObject),
-            headers: { "Content-Type": "application/json" },
-        });
-
-        if (!res.ok) {
-            const data = await res.json();
-            return {
-                success: false,
-                errors: null,
-                errMessage: data.message || "Failed to save",
-                enteredValues: formDataObject,
-            };
-        }
-
-        return {
-            success: true,
-            errors: null,
-            errMessage: null,
-            enteredValues: undefined,
-        };
+        return await createStreamContent(formDataObject);
     } catch {
         return {
             success: false,
