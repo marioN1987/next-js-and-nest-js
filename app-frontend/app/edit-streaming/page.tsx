@@ -1,24 +1,17 @@
 "use client";
 import { editStreamFormAction } from "@/actions/streamingFormAction";
-import { AppContext } from "@/components/context/app-content-provider";
 import GenericForm from "@/components/genericForm";
-import { loadStreamingContent } from "@/helper/helperMethods";
 import { IFormStateProps } from "@/types/IFormStateProps.interface";
 import { IStreamingContent } from "@/types/IStreamingContent.interface";
-import { useRouter } from "next/navigation";
-import React, {
-  useActionState,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { loadStreamingContent } from "@/utils/http";
+import React, { useActionState, useCallback, useEffect, useState } from "react";
+import { redirectToHomepageIfNotAdmin } from "../checkIfAdmin/redirectIfNotAdmin";
 
 export default function EditStreaming() {
-  const { isAdmin } = useContext(AppContext);
+  redirectToHomepageIfNotAdmin();
+
   const [streamingData, setStreamingData] = useState<IStreamingContent[]>([]);
   const [selectedStreamId, setSelectedStreamId] = useState("");
-  const router = useRouter();
 
   const fetchAllStreamingContent = useCallback(() => {
     loadStreamingContent().then((data) => setStreamingData(data));
@@ -39,13 +32,6 @@ export default function EditStreaming() {
     editStreamFormAction,
     initialValues
   );
-
-  //redirect if not admin
-  useEffect(() => {
-    if (!isAdmin) {
-      router.push("/");
-    }
-  }, [isAdmin]);
 
   const handleSelectedStream = async (
     event: React.ChangeEvent<HTMLSelectElement>

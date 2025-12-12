@@ -1,13 +1,11 @@
 "use client";
-import { useActionState, useContext, useEffect } from "react";
+import { useActionState } from "react";
 import { createStreamFormAction } from "../../actions/streamingFormAction";
-import { AppContext } from "@/components/context/app-content-provider";
-import { useRouter } from "next/navigation";
 import GenericForm from "@/components/genericForm";
+import { redirectToHomepageIfNotAdmin } from "../checkIfAdmin/redirectIfNotAdmin";
 
 export default function AddNewStreaming() {
-  const { isAdmin } = useContext(AppContext);
-  const router = useRouter();
+  redirectToHomepageIfNotAdmin();
 
   const [formState, formAction, isPending] = useActionState(
     createStreamFormAction,
@@ -17,13 +15,6 @@ export default function AddNewStreaming() {
       success: false,
     }
   );
-
-  //redirect if not admin
-  useEffect(() => {
-    if (!isAdmin) {
-      router.push("/");
-    }
-  }, [isAdmin]);
 
   return (
     <div className="w-1/2 mx-auto my-5">
