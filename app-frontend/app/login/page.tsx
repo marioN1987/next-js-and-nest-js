@@ -61,10 +61,11 @@ export default function LoginForm() {
         </label>
         <input
           type="email"
+          aria-label="Please enter valid email"
           id="email"
           name="email"
           className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-          placeholder="name@flowbite.com"
+          placeholder="Please enter valid email"
           defaultValue={formState.enteredValues?.email ?? ""}
         />
       </div>
@@ -78,6 +79,7 @@ export default function LoginForm() {
         <input
           type="password"
           id="password"
+          aria-label="Please enter password"
           name="password"
           className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
           placeholder="••••••••"
@@ -85,6 +87,7 @@ export default function LoginForm() {
       </div>
 
       <button
+        aria-label="Login"
         type="submit"
         disabled={isPending}
         className="cursor-pointer text-fg-brand transition hover:bg-cyan-100 hover:text-black bg-neutral-primary border font-medium leading-2 rounded-base text-sm px-4 py-2.5"

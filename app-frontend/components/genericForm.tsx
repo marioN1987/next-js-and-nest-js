@@ -37,6 +37,7 @@ export default function GenericForm({
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="id"
+            aria-label="Stream ID"
             readOnly={true}
             type="text"
             name="id"
@@ -56,6 +57,7 @@ export default function GenericForm({
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="title"
           type="text"
+          aria-label="Please enter title"
           placeholder="Please enter title ..."
           name="title"
           defaultValue={formState?.enteredValues?.title}
@@ -74,6 +76,7 @@ export default function GenericForm({
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="duration"
+          aria-label="Please enter duration"
           type="number"
           placeholder="Please enter duration (in seconds) ..."
           name="duration"
@@ -100,6 +103,7 @@ export default function GenericForm({
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="watch_progress"
           type="number"
+          aria-label="Please enter watch progress"
           min="0"
           step="1"
           placeholder="Please enter watch progress (in seconds) ..."
@@ -125,6 +129,7 @@ export default function GenericForm({
         <textarea
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="description"
+          aria-label="Please enter description"
           placeholder="Please enter description ..."
           name="description"
           defaultValue={formState?.enteredValues?.description}
@@ -144,6 +149,7 @@ export default function GenericForm({
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="thumbnail_url"
+          aria-label="Please enter thumbnail url"
           type="url"
           name="thumbnail_url"
           placeholder="Please enter thumbnail url ..."
@@ -164,6 +170,7 @@ export default function GenericForm({
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="video_url"
+          aria-label="Please enter video url"
           type="url"
           name="video_url"
           placeholder="Please enter video url ..."
@@ -185,6 +192,7 @@ export default function GenericForm({
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="year"
           type="number"
+          aria-label="Please enter year"
           min={1920}
           max={2025}
           name="year"
@@ -209,10 +217,10 @@ export default function GenericForm({
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="genre"
+          aria-label="Please enter genre"
           type="text"
           name="genre"
           placeholder="Please enter genre ..."
-          //defaultValue="Horror"
           defaultValue={formState?.enteredValues?.genre}
         />
         <p className="mt-1 text-sm text-red-600">
@@ -230,6 +238,7 @@ export default function GenericForm({
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="rating"
           type="number"
+          aria-label="Please enter rating"
           min={1}
           max={10}
           name="rating"
@@ -255,6 +264,7 @@ export default function GenericForm({
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="cast"
+          aria-label="Please enter cast"
           type="text"
           name="cast"
           placeholder="Please enter cast ..."
@@ -266,6 +276,7 @@ export default function GenericForm({
       </div>
       <div className="flex items-center justify-between">
         <button
+          aria-label={`${isEditForm ? "Update" : "Create"}`}
           type="submit"
           disabled={isPending}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

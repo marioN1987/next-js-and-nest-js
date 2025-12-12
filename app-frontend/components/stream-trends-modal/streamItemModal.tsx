@@ -32,11 +32,26 @@ export default function StreamItemModal({
         title={selected?.title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-      ></iframe>
+      />
 
-      <p>{selected?.description}</p>
+      <p>
+        <span className="font-bold">Description:</span>
+        <span className="text-md italic">{selected?.description}</span>
+      </p>
+      <p>
+        <span className="font-bold">Year:</span> {selected?.year}
+      </p>
+
+      <p>
+        <span className="font-bold">Genre:</span> {selected?.genre}
+      </p>
+
+      <p>
+        <span className="font-bold">Rating:</span> {selected?.rating}
+      </p>
 
       <button
+        aria-label="Close"
         onClick={onCloseClick}
         className="px-3 py-2 bg-gray-800 text-white rounded-lg cursor-pointer mt-4"
       >
