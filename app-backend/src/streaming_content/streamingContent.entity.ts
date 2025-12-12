@@ -9,7 +9,7 @@ export class StreamingContentEntity {
     @Column()
     title: string;
 
-    @Column()
+    @Column('text')
     description: string;
 
     @Column()
