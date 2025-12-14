@@ -1,5 +1,5 @@
-import { IStreamingContent } from "./IStreamingContent.interface";
-import { IStreamingFormErrors } from "./IStreamingFormErrors.interface";
+import { IStreamingContent } from "./IStreamingContentProps.interface";
+import { IStreamingFormErrors } from "./IStreamingFormErrorsPropr.interface";
 
 export interface IFormStateProps {
   success: boolean;

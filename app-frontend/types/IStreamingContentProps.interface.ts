@@ -1,10 +1,10 @@
-export interface IStreamingContent {
+export interface IStreamingContentProps {
     id: string;
     title: string;
     duration: number;
     genre: string;
     rating: number;
-    watch_progress: number;
+    watch_progress: string;
     video_url: string;
     thumbnail_url: string;
     year: number;
