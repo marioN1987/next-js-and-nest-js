@@ -1,9 +1,12 @@
+import DeleteButton from "@/components/delete-stream/deleteButton";
+import { useWatchHistory } from "@/hooks/useWatchHistory";
 import { IStreamingContentProps } from "@/types/IStreamingContentProps.interface";
-import { loadStreamingContent } from "@/utils/http";
+import { deleteStreamById, loadStreamingContent } from "@/utils/http";
 import Link from "next/link";
 
 export default async function StreamsItems() {
   const streamsList: IStreamingContentProps[] = await loadStreamingContent();
+
   return (
     <table className="w-full table-auto md:table-fixed border border-gray-200 rounded-lg overflow-hidden">
       <thead className="bg-gray-100">
@@ -39,12 +42,7 @@ export default async function StreamsItems() {
                 >
                   Edit
                 </Link>
-                <Link
-                  href={{ pathname: "/delete-streaming" }}
-                  className="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600"
-                >
-                  Delete
-                </Link>
+                <DeleteButton streamId={stream.id} />
               </td>
             </tr>
           ))}

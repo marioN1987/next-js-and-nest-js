@@ -3,13 +3,13 @@ import { ParamValue } from "next/dist/server/request/params";
 
 export async function fetchStreamingContent() {
     const response = await fetch('http://localhost:8080/api/streaming');  
-    const jsonRes = await response.json();
+    const resultJson = await response.json();
     
     if (!response.ok) {
         throw new Error("Failed to fetch streaming content");
     }
 
-    return jsonRes;
+    return resultJson;
 }
 
 export async function validateUser(formData: any) {
@@ -39,8 +39,8 @@ export async function validateUser(formData: any) {
 
 export async function loadStreamingContent() {
   const resp = await fetch("http://localhost:8080/api/streaming");
-  const streamData = await resp.json();
-  return streamData;
+  const resultJson = await resp.json();
+  return resultJson;
 }
 
 export async function createStreamContent(formDataObject: IStreamingContentProps) {
@@ -95,5 +95,24 @@ export async function updateStreamContent(formDataObject: IStreamingContentProps
 
 export async function getStreamById(streamId: ParamValue) {
   const resp = await fetch("http://localhost:8080/api/streaming/" + streamId);
-  return await resp.json();
+  const resultJson = await resp.json();
+
+  return resultJson;
+}
+
+export async function deleteStreamById(streamId: ParamValue) {
+  const response = await fetch(`http://localhost:8080/api/streaming/${streamId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error deleting content: ${response.statusText}`);
+  }
+
+  const resultJson = await response.json();
+
+  return resultJson;
 }
