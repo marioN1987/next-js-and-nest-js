@@ -95,33 +95,6 @@ export default function GenericForm({
       <div className="mb-6">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="watch_progress"
-        >
-          Watch Progress
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="watch_progress"
-          type="number"
-          aria-label="Please enter watch progress"
-          min="0"
-          step="1"
-          placeholder="Please enter watch progress (in seconds) ..."
-          name="watch_progress"
-          defaultValue={
-            formState?.enteredValues?.watch_progress === 0
-              ? ""
-              : formState?.enteredValues?.watch_progress
-          }
-        />
-        <p className="mt-1 text-sm text-red-600">
-          {formState?.errors &&
-            extractErrMessage(formState.errors, "watch_progress")}
-        </p>
-      </div>
-      <div className="mb-6">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="description"
         >
           Description

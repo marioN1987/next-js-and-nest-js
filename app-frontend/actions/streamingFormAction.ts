@@ -1,7 +1,7 @@
 "use server";
 import { isValidUrl } from "@/helper/helperMethods";
-import { IStreamingContent } from "@/types/IStreamingContent.interface";
-import { IStreamingFormErrors } from "@/types/IStreamingFormErrors.interface";
+import { IStreamingContentProps } from "@/types/IStreamingContentProps.interface";
+import { IStreamingFormErrors } from "@/types/IStreamingFormErrorsPropr.interface";
 import { IFormStateProps } from "@/types/IFormStateProps.interface";
 import { createStreamContent, updateStreamContent } from "@/utils/http";
 
@@ -10,13 +10,12 @@ import { createStreamContent, updateStreamContent } from "@/utils/http";
 ------------------------------------------------- */
 function validationForm(formData: FormData): {
     errors: IStreamingFormErrors[];
-    formDataObject: IStreamingContent;
+    formDataObject: IStreamingContentProps;
 } {
     const id = (formData.get("id") as string) ?? crypto.randomUUID();
 
     const title = (formData.get("title") as string) ?? "";
     const duration = (formData.get("duration") as string) ?? "";
-    const watch_progress = (formData.get("watch_progress") as string) ?? "";
     const thumbnail_url = (formData.get("thumbnail_url") as string) ?? "";
     const video_url = (formData.get("video_url") as string) ?? "";
     const description = (formData.get("description") as string) ?? "";
@@ -35,12 +34,6 @@ function validationForm(formData: FormData): {
         errors.push({ colName: "duration", message: "Please enter duration" });
     } else if (isNaN(Number(duration))) {
         errors.push({ colName: "duration", message: "Invalid duration" });
-    }
-
-    if (!watch_progress) {
-        errors.push({ colName: "watch_progress", message: "Please enter watch progress" });
-    } else if (isNaN(Number(watch_progress))) {
-        errors.push({ colName: "watch_progress", message: "Invalid watch progress" });
     }
 
     if (!thumbnail_url) {
@@ -74,13 +67,13 @@ function validationForm(formData: FormData): {
 
 
     /* ---- FINAL CLEAN OBJECT ---- */
-    const formDataObject: IStreamingContent = {
+    const formDataObject: IStreamingContentProps = {
         id,
         title,
         duration: Number(duration),
         genre,
         rating: Number(rating),
-        watch_progress: Number(watch_progress),
+        watch_progress: "",
         video_url,
         thumbnail_url,
         year: Number(year),
