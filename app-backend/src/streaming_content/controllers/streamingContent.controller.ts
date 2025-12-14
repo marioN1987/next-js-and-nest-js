@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put, Delete, UseGuards } from '@nestjs/common';
-import { StreamingContentService } from './streamingContent.service';
-import { StreamingContentDto } from './streamingContent.dto';
-import { StreamingContentEntity } from './streamingContent.entity';
+import { StreamingContentService } from '../services/streamingContent.service';
+import { StreamingContentDto } from '../dto/streamingContent.dto';
+import { StreamingContentEntity } from '../entities/streamingContent.entity';
 import type { UUID } from 'crypto';
 
 @Controller('api/streaming')
@@ -38,8 +38,6 @@ export class StreamingContentController {
   @Put(':id')
   async update(@Param('id') id: UUID, @Body() updatedData: StreamingContentDto) {
     const updated = await this.streamingContentService.update(id, updatedData);
-
-    console.log(updated);
 
     if (!updated) {
       return { message: `No content found with id ${id}` };

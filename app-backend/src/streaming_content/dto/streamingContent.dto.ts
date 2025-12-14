@@ -36,6 +36,6 @@ export class StreamingContentDto {
   @IsString()
   cast: string;
 
-  @IsNumber()
-  watch_progress?: number;
+  @IsString()
+  watch_progress?: string;
 }

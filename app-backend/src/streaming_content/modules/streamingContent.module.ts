@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { StreamingContentController } from './streamingContent.controller';
-import { StreamingContentService } from './streamingContent.service';
-import { StreamingContentEntity } from './streamingContent.entity';
+import { StreamingContentController } from '../controllers/streamingContent.controller';
+import { StreamingContentService } from '../services/streamingContent.service';
+import { StreamingContentEntity } from '../entities/streamingContent.entity';
 import { APP_GUARD } from '@nestjs/core';
-import { MockJwtAuthGuard } from '../auth/mockJwtAuthGuard';
+import { MockJwtAuthGuard } from '../../auth/mockJwtAuthGuard';
 
 @Module({
   imports:[TypeOrmModule.forFeature([StreamingContentEntity])],

@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { StreamingService } from './streamingContent.service';
+import { StreamingService } from './streamingContent.service.spec';
 
 @Controller('streaming')
 export class AppController {

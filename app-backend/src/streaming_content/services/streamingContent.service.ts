@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { StreamingContentEntity } from './streamingContent.entity';
+import { StreamingContentEntity } from '../entities/streamingContent.entity';
 import { UUID } from 'crypto';
-import { StreamingContentDto } from './streamingContent.dto';
+import { StreamingContentDto } from '../dto/streamingContent.dto';
 
 @Injectable()
 export class StreamingContentService {
