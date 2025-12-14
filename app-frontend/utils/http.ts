@@ -1,4 +1,5 @@
-import { IStreamingContent } from "@/types/IStreamingContent.interface";
+import { IStreamingContentProps } from "@/types/IStreamingContentProps.interface";
+import { ParamValue } from "next/dist/server/request/params";
 
 export async function fetchStreamingContent() {
     const response = await fetch('http://localhost:8080/api/streaming');  
@@ -42,7 +43,7 @@ export async function loadStreamingContent() {
   return streamData;
 }
 
-export async function createStreamContent(formDataObject: IStreamingContent) {
+export async function createStreamContent(formDataObject: IStreamingContentProps) {
     const res = await fetch(`http://localhost:8080/api/streaming/create`, {
             method: "POST",
             body: JSON.stringify(formDataObject),
@@ -67,7 +68,7 @@ export async function createStreamContent(formDataObject: IStreamingContent) {
     };
 }
 
-export async function updateStreamContent(formDataObject: IStreamingContent) {
+export async function updateStreamContent(formDataObject: IStreamingContentProps) {
         const res = await fetch(`http://localhost:8080/api/streaming/${formDataObject.id}`, {
             method: "PUT",
             body: JSON.stringify(formDataObject),
@@ -90,4 +91,9 @@ export async function updateStreamContent(formDataObject: IStreamingContent) {
         errMessage: null,
         enteredValues: undefined,
     };
+}
+
+export async function getStreamById(streamId: ParamValue) {
+  const resp = await fetch("http://localhost:8080/api/streaming/" + streamId);
+  return await resp.json();
 }
