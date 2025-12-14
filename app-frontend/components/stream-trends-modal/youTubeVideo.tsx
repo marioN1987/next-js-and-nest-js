@@ -32,17 +32,23 @@ export default function YouTubeVideo({
               event.data === (window as any).YT.PlayerState.PAUSED ||
               event.data === (window as any).YT.PlayerState.ENDED
             ) {
-              const player = playerRef.current;
-              if (player && typeof player.getCurrentTime === "function") {
-                const current = player.getCurrentTime();
-                const duration = player.getDuration();
-                const progressPercent = (current / duration) * 100;
-                if (onProgress) onProgress(progressPercent);
-              }
+              sendProgress();
             }
           },
         },
       });
+    };
+
+    const sendProgress = () => {
+      const player = playerRef.current;
+      if (player && typeof player.getCurrentTime === "function") {
+        const current = player.getCurrentTime();
+        const duration = player.getDuration();
+        if (duration > 0) {
+          const progressPercent = (current / duration) * 100;
+          onProgress?.(progressPercent);
+        }
+      }
     };
 
     if ((window as any).YT && (window as any).YT.Player) {
@@ -51,7 +57,11 @@ export default function YouTubeVideo({
       (window as any).onYouTubeIframeAPIReady = initPlayer;
     }
 
+    //clean up func
     return () => {
+      //calc progress if user close modal and doesn't pause/end the video
+      sendProgress();
+
       if (
         playerRef.current &&
         typeof playerRef.current.destroy === "function"
