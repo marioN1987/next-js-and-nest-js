@@ -22,13 +22,13 @@ export default function LoginForm() {
     if (formState.userAccess === "admin") {
       setIsAdmin(true);
       localStorage.setItem("isAdmin", "true");
+      router.push("/admin");
     } else {
       const email = formState.enteredValues?.email ?? null;
       setGuestEmail(email);
       localStorage.setItem("guestEmail", email ?? "");
+      router.push("/");
     }
-
-    router.push("/");
   }, [
     formState.success,
     formState.userAccess,
