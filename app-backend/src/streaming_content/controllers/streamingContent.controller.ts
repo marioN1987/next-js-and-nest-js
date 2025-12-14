@@ -23,16 +23,16 @@ export class StreamingContentController {
     const exists = await this.streamingContentService.findOne(data.id);
 
     if (exists) {
-      return "The provided id already exists";
+      return { success: false, message: 'The provided id already exists' };
     }
 
     const streamingCreated = await this.streamingContentService.create(data);
 
     if (!streamingCreated) {
-      return { message: 'Streaming creation failed' };
+      return { success: false, message: 'Streaming creation failed' };
     }
 
-    return 'New streaming content created successfully';
+    return { success: true, message: 'Streaming created successfully' };
   }
 
   @Put(':id')
@@ -40,17 +40,24 @@ export class StreamingContentController {
     const updated = await this.streamingContentService.update(id, updatedData);
 
     if (!updated) {
-      return { message: `No content found with id ${id}` };
+      return { success: false, message: `No content found with id ${id}` };
     }
 
     return {
+      success: true,
       message: 'Streaming content updated successfully',
       content: updated,
     };
   }
 
   @Delete(':id')
-  remove(@Param('id') id: UUID) {
-    return this.streamingContentService.remove(id);
+  async remove(@Param('id') id: UUID) {
+    const deleted = await this.streamingContentService.remove(id);
+
+    if (!deleted) {
+       return { success: true, message: 'Streaming deleted successfully' };
+    }
+
+    return { success: true, message: 'Streaming deleted successfully' };
   }
 }

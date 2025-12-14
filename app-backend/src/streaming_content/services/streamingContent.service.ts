@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { StreamingContentEntity } from '../entities/streamingContent.entity';
 import { UUID } from 'crypto';
 import { StreamingContentDto } from '../dto/streamingContent.dto';
+import { DeleteResult } from 'typeorm/browser';
 
 @Injectable()
 export class StreamingContentService {
@@ -20,8 +21,8 @@ export class StreamingContentService {
     return this.streamingContentRepository.findOneBy({ id });
   }
 
-  async remove(id: UUID): Promise<void> {
-    await this.streamingContentRepository.delete(id);
+  async remove(id: UUID): Promise<DeleteResult> {
+    return await this.streamingContentRepository.delete(id);
   }
 
   async update(id: UUID, data: StreamingContentDto) {
