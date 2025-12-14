@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function TrendingNow() {
   return (
     <section id="trending" className="mx-5">
-      <h2 className="text-4xl font-bold mt-10 ml-5 mb-5 border-b-2 border-black-500 w-fit">
+      <h2 className="text-4xl font-bold mt-10 mb-5 border-b-2 border-black-500 w-fit">
         Trending Now
       </h2>
 

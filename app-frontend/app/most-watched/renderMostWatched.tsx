@@ -6,8 +6,7 @@ export default function RenderMostWatched({
 }: {
   items: IWatchHistoryProps[];
 }) {
-  return (
-    items &&
+  return items.length > 0 ? (
     items.map((stream: IWatchHistoryProps, index: number) => (
       <div key={stream.id} className="w-[200px] h-auto fill relative">
         <img
@@ -20,5 +19,7 @@ export default function RenderMostWatched({
         <ProgressBar progress={stream.progress} />
       </div>
     ))
+  ) : (
+    <p className="text-xl italic">Wacth video from trending now section.</p>
   );
 }

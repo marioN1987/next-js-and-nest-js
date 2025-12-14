@@ -28,7 +28,7 @@ export default function MostWatched() {
 
   return (
     <section id="most-watched" className="mx-5">
-      <h2 className="text-4xl font-bold mt-10 ml-5 mb-5 border-b-2 border-black-500 w-fit">
+      <h2 className="text-4xl font-bold mt-10 mb-5 border-b-2 border-black-500 w-fit">
         Top 5 most watched
       </h2>
       <div className="overflow-x-auto mx-auto">
