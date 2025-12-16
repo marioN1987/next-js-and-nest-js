@@ -33,16 +33,18 @@ export default function EditStreaming() {
   formState.enteredValues = selectedStream as IStreamingContentProps;
 
   return (
-    <div className="w-[50%] mx-auto rounded px-8 pt-6 pb-8 mb-4">
+    <div className="rounded px-8 pt-6 pb-8 mb-4">
       <h2 className="text-4xl font-bold text-heading text-center mb-6">
         Edit streaming content
       </h2>
 
-      {formState?.success === true && <p>Stream updated</p>}
+      <div className="text-center mb-5">
+        {formState?.success === true && <p>Stream updated</p>}
 
-      {formState?.success === false && formState.errMessage && (
-        <p>{formState.errMessage}</p>
-      )}
+        {formState?.success === false && formState.errMessage && (
+          <p>{formState.errMessage}</p>
+        )}
+      </div>
 
       {/* don't render until stream id selected */}
       {selectedStream && (
