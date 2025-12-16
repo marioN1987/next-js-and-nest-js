@@ -9,8 +9,11 @@ import { UsersModule } from './users/module/users.module';
 
 @Module({
   imports: [
+    //gets .env variables
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    //It initializes the database connection asynchronously
     TypeOrmModule.forRootAsync({
+      //ConfigService provides access to environment variables
       useFactory: (configService: ConfigService) => ({
           type: configService.get<'mysql'>('DB_CONNECTION'),
           host: configService.get<string>('DB_HOST'),
@@ -18,6 +21,7 @@ import { UsersModule } from './users/module/users.module';
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
           database: configService.get<string>('DB_DATABASE'),
+          //loads all entity classes
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
           synchronize: true,
           logging: true,
