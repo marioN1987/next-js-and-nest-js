@@ -10,14 +10,18 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   //check context if not admin, then redirect to homepage
-  const { isAdmin } = useContext(AuthContext);
+  const { isAdmin, isInitialized } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAdmin) {
-      router.push("/");
+    if (isInitialized && !isAdmin) {
+      router.replace("/");
     }
-  }, [isAdmin, router]);
+  }, [isAdmin, isInitialized, router]);
+
+  if (!isInitialized) {
+    return null; // or loader
+  }
 
   return <>{children}</>;
 }

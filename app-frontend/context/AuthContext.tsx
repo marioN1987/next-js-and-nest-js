@@ -7,6 +7,7 @@ const defaultContext: IAuthContextProps = {
   guestEmail: null,
   setIsAdmin: () => {},
   setGuestEmail: () => {},
+  isInitialized: false,
 };
 
 export const AuthContext = createContext<IAuthContextProps>(defaultContext);
