@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   //store in localstorage if admin or guest is logged in
   // because on page reload it was reseting
   useEffect(() => {
-    if (localStorage.getItem("isAdmin")) {
+    if (localStorage.getItem("isAdmin") === "true") {
       setIsAdmin(true);
     }
 

@@ -4,11 +4,7 @@ import { deleteStreamById } from "@/utils/http";
 import { useWatchHistory } from "@/hooks/useWatchHistory";
 import { useRouter } from "next/navigation";
 
-interface DeleteButtonProps {
-  streamId: string;
-}
-
-export default function DeleteButton({ streamId }: DeleteButtonProps) {
+export default function DeleteButton({ streamId }: { streamId: string }) {
   const { removeItem } = useWatchHistory();
   const router = useRouter();
 
@@ -16,7 +12,7 @@ export default function DeleteButton({ streamId }: DeleteButtonProps) {
     try {
       await deleteStreamById(streamId);
       removeItem(streamId);
-      router.push("/"); // or router.refresh() if staying on same page
+      router.push("/");
     } catch (err) {
       console.error("Failed to delete stream:", err);
     }
